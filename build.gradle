@@ -3,6 +3,10 @@ plugins {
     id "net.minecraftforge.gradle.tweaker-client" version "86b2392"
 }
 
+ext {
+    server = false
+}
+
 group "com.example"
 version "1.0.0"
 
@@ -15,15 +19,13 @@ repositories {
 
 dependencies {
     // Required for launching
-    compileOnly "com.github.BookMC:modding:c03f14153c"
-    compileOnly "com.github.BookMC:loader:82400b61b6"
-
-    compileOnly "com.github.BookMC.minecraft:client:6ed1506f35"
+    compileOnly "com.github.BookMC:loader:b143da418e"
+    compileOnly "com.github.BookMC.minecraft:${server ? "server" : "client"}:83755ed3d8"
 }
 
 minecraft {
     version = "1.8.9"
-    tweakClass = "org.bookmc.loader.BookMCLoader"
+    tweakClass = "org.bookmc.loader.impl.tweaker.BookMC${server ? "Server" : "Client"}Loader"
     mappings = "stable_22"
     runDir = "run"
     makeObfSourceJar = false
