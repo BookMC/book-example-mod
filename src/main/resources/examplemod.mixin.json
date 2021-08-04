@@ -1,11 +1,11 @@
 {
   "required": true,
   "compatibilityLevel": "JAVA_8",
-  "package": "com.example.mixins",
-  "refmap": "mixin.examplemod.refmap.json",
+  "package": "com.example.mixin",
+  "refmap": "refmap.examplemod.mixin.json",
   "minVersion": "0.7.11",
   "verbose": true,
-  "mixins": [
+  "client": [
     "client.MixinMinecraft"
   ]
 }

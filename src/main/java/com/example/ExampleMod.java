@@ -8,7 +8,7 @@ public class ExampleMod {
 
     public static ExampleMod INSTANCE = new ExampleMod();
 
-    public void start() {
+    public void main() {
         logger.info("ExampleMod was loaded! :)");
     }
 

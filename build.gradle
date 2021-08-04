@@ -1,10 +1,7 @@
 plugins {
+    id "org.bookmc.ink" version "e4308f104a"
+    id "org.spongepowered.mixin" version "d5f9873d60"
     id "java"
-    id "net.minecraftforge.gradle.tweaker-client" version "86b2392"
-}
-
-ext {
-    server = false
 }
 
 group "com.example"
@@ -17,16 +14,8 @@ repositories {
     }
 }
 
-dependencies {
-    // Required for launching
-    compileOnly "com.github.BookMC:loader:b143da418e"
-    compileOnly "com.github.BookMC.minecraft:${server ? "server" : "client"}:83755ed3d8"
-}
-
-minecraft {
-    version = "1.8.9"
-    tweakClass = "org.bookmc.loader.impl.tweaker.BookMC${server ? "Server" : "Client"}Loader"
-    mappings = "stable_22"
-    runDir = "run"
-    makeObfSourceJar = false
+mixin {
+    // Specify "notch" or "searge" here
+    defaultObfuscationEnv searge
+    add sourceSets.main, "refmap.examplemod.mixin.json"
 }

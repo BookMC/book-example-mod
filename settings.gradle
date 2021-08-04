@@ -10,8 +10,16 @@ pluginManagement {
     }
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.id == "net.minecraftforge.gradle.tweaker-client") {
-                useModule("com.github.asbyth:ForgeGradle:${requested.version}")
+            switch (requested.id.id) {
+                case "net.minecraftforge.gradle.tweaker-client":
+                    useModule("com.github.asbyth:ForgeGradle:${requested.version}")
+                    break
+                case "org.bookmc.ink":
+                    useModule("com.github.BookMC:ink:${requested.version}")
+                    break
+                case "org.spongepowered.mixin":
+                    useModule("com.github.Skytils:mixingradle:${requested.version}")
+                    break
             }
         }
     }

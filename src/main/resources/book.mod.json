@@ -1,9 +1,27 @@
-[
-  {
-    "name": "ExampleMod",
-    "author": "ChachyDev",
-    "version": "0.0.1",
-    "entrypoint": "com.example.ExampleMod::start",
-    "mixin_entrypoint": "examplemod.mixins.json"
+{
+  "name": "book-example-mod",
+  "id": "book-example-mod",
+  "version": "1.0.0",
+  "description": "An example mod for book-loader using Minecraft",
+  "authors": {
+    "BookMC": {
+      "github": "https://github.com/BookMC"
+    }
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoint": {
+    "main": [
+      "com.example.ExampleMod"
+    ]
+  },
+  "mixin": {
+    "*": [
+      "examplemod.mixin.json"
+    ]
+  },
+  "depends": {
+    "book-loader": "*",
+    "minecraft": "1.8.9"
   }
-]
+}
