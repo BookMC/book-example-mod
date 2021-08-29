@@ -1,7 +1,13 @@
 plugins {
-    id "org.bookmc.ink" version "e4308f104a"
-    id "org.spongepowered.mixin" version "d5f9873d60"
     id "java"
+    id "me.dreamhopping.pml.gradle" version "3.10.0+build.20"
+    id "org.bookmc.annotation-processor-configuration" version "0.2.0+build.5"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(16)
+    }
 }
 
 group "com.example"
@@ -10,12 +16,34 @@ version "1.0.0"
 repositories {
     mavenCentral()
     maven {
-        url "https://jitpack.io"
+        name "BooKMC"
+        url "https://maven.bookmc.org"
+    }
+
+    maven {
+        name "FabricMC"
+        url "https://maven.fabricmc.net"
     }
 }
 
-mixin {
-    // Specify "notch" or "searge" here
-    defaultObfuscationEnv searge
-    add sourceSets.main, "refmap.examplemod.mixin.json"
+
+dependencies {
+    compileOnly "org.bookmc:book-loader:0.9.1+build.9"
+    compileOnly "org.apache.logging.log4j:log4j-core:2.13.2"
+
+    // The "multiversion" configuration is quite simple. It adds the dependency onto each sourceset but requests maven for the jar with the mc${gameversion} classifier.
+    // For example if it's fetching it for 1.17.1 it would ask maven for minecraft-0.6.0+build.17-mc1.17.1. This means that anything from the other mod's mc1.17.1 sourceset
+    // will be located in here. The "remap" configuration does the same but instead fetches the deobfuscated jar instead of a production ready jar that if shaded will be
+    // remapped
+    remapImplementation "org.bookmc:minecraft:0.6.1+build.18"
+}
+
+minecraft {
+    separateVersionJars()
+    loader()
+
+    // Change this to whatever versions you want to build for, for example you can do:
+    // target "1.15.2", "1.16.4"
+    // if you only want one version:
+    target "1.17.1"
 }

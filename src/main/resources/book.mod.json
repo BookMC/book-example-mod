@@ -21,7 +21,6 @@
     ]
   },
   "depends": {
-    "book-loader": "*",
-    "minecraft": "1.8.9"
+    "book-loader": "*"
   }
 }
